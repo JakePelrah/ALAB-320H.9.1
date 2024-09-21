@@ -1,0 +1,44 @@
+body {
+    background-color: #494949;
+    caret-color: rgb(255, 255, 255);
+}
+
+.navbar {
+    background-color: #494949 !important;
+    border-bottom: 1px solid black;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.form-check-input:checked {
+    background-color: #ff00ff;
+    border-color: #ff00ff;
+}
+
+textarea {
+    width: 100%;
+    margin-left: 1em;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    background-color: #555555;
+    font-size: 16px;
+    font-weight: bold;
+    resize: none;
+    overflow-y: scroll;
+    outline: none;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    background-color: #333;
+}
+
+.note {
+    background-color: #333;
+}
