@@ -3,6 +3,11 @@ body {
     caret-color: rgb(255, 255, 255);
 }
 
+body::-webkit-scrollbar-thumb {
+    background-color: #a9a9a9;
+    outline: 1px solid slategrey;
+  }
+
 .navbar {
     background-color: #494949 !important;
     border-bottom: 1px solid black;
@@ -15,8 +20,8 @@ body {
 }
 
 .form-check-input:checked {
-    background-color: #ff00ff;
-    border-color: #ff00ff;
+    background-color: #a9a9a9;
+    border-color: #a9a9a9;
 }
 
 textarea {
@@ -27,21 +32,24 @@ textarea {
     box-sizing: border-box;
     border: none;
     border-radius: 4px;
-    background-color: #555555;
+    background-color: #333;
     font-size: 16px;
     font-weight: bold;
     resize: none;
     overflow-y: scroll;
     outline: none;
     color: white;
+    scrollbar-color: #a9a9a9 #333;
+    
 }
 
-::-webkit-scrollbar {
-    background-color: #333;
-}
 
 .note {
     background-color: #333;
-    color: rgb(91, 91, 91);
     width: 50vw;
+}
+
+.date {
+    font-size: .8em;
+    color: rgb(124, 124, 124);
 }

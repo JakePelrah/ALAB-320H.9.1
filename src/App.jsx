@@ -88,7 +88,7 @@ function Note({ note }) {
           </div>
         </div>
 
-        <span className='d-flex justify-content-center mt-1'>{new Date().toLocaleString()}</span>
+        <span className='date d-flex justify-content-center mt-1'>{new Date().toLocaleString()}</span>
       </div>
     </div>
 
