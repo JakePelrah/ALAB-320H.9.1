@@ -1,33 +1,38 @@
 import { useEffect, useState } from 'react'
-import trash from './assets/trash3-fill.svg'
-import lock from './assets/lock-fill.svg'
-import unlock from './assets/unlock-fill.svg'
-
-
-
+import Note from './components/Note';
+import add from './assets/plus-square-fill.svg'
+import { v4 as uuidv4 } from 'uuid';
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
-  const [notes, setNotes] = useState([{ id: 1, text: "Pick up squash and onions." },
-  { id: 2, text: "Pick up squash and onions." },
-  { id: 3, text: "Pick up squash and onions." },
-  { id: 4, text: "Pick up squash and onions." },
-  { id: 5, text: "Pick up squash and onions." },
-  { id: 6, text: "Pick up squash and onions." },
-  { id: 7, text: "Pick up squash and onions." },
-  { id: 8, text: "Pick up squash and onions." },
 
+  const [notes, setNotes] = useState([])
 
-  ])
+  function editNote(noteText, id) {
+    setNotes(notes.map(note => (note.id === id ? { ...note, noteText } : note)))
+  }
 
-  const renderedNotes = notes?.map(note => <Note note={note} />)
+  const renderedNotes = notes?.map(note => <Note key={note.id} note={note} editNote={editNote} />)
+  
+  function createNewNote() {
+    setNotes(prevState => [{
+      id: uuidv4(),
+      noteText: '',
+      created: new Date()
+    }, ...prevState])
+  }
 
   return (
     <>
       <nav className="navbar bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">TODO List</a>
+
+          <div type='button' className='d-flex align-items-center' onClick={createNewNote}>
+          <img id='add-note-img' src={add}></img>
+        </div>
+        
         </div>
       </nav>
 
@@ -40,57 +45,3 @@ function App() {
 }
 
 export default App
-
-
-
-
-
-
-function Note({ note }) {
-
-  const [isLocked, setIsLocked] = useState(true)
-  const [isCompleted, setIsCompleted] = useState(false)
-
-  function deleteNote() {
-
-  }
-
-  useEffect(() => {
-    const n = document.getElementById(`noteId-${note.id}`)
-    let textArea = n.querySelector('textarea')
-    textArea.toggleAttribute('readonly')
-    textArea.focus()
-    textArea.setSelectionRange(textArea.value.length, textArea.value.length);
-  }, [isLocked])
-
-
-
-
-
-  return (<div className=''>
-    <div id={`noteId-${note.id}`} className="card note m-3">
-      <div className="card-body">
-
-        <div className='d-flex align-items-center'>
-
-          <div class="form-check">
-            <input onChange={(e) => setIsCompleted(e.target.checked)} class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-          </div>
-
-          <textarea readOnly>
-            {note.text}
-          </textarea>
-
-          <div className='btn-group mb-1'>
-            {isCompleted ? <a href="#" id="trash-btn" className="btn"><img src={trash}></img></a> : null}
-
-            <a onClick={() => setIsLocked(prevState => !prevState)} href="#" className="btn"><img src={isLocked ? lock : unlock}></img></a>
-          </div>
-        </div>
-
-        <span className='date d-flex justify-content-center mt-1'>{new Date().toLocaleString()}</span>
-      </div>
-    </div>
-
-  </div>)
-}

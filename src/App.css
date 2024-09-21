@@ -6,7 +6,7 @@ body {
 body::-webkit-scrollbar-thumb {
     background-color: #a9a9a9;
     outline: 1px solid slategrey;
-  }
+}
 
 .navbar {
     background-color: #494949 !important;
@@ -40,13 +40,19 @@ textarea {
     outline: none;
     color: white;
     scrollbar-color: #a9a9a9 #333;
-    
+
 }
 
 
 .note {
     background-color: #333;
     width: 50vw;
+}
+
+
+#add-note-img{
+    width: 2em;
+    height: 2em;
 }
 
 .date {
