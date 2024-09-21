@@ -9,16 +9,16 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [notes, setNotes] = useState([{ id: 1, text: "Pick up squash and onions." }, 
-    { id: 2, text: "Pick up squash and onions." },
-    { id: 3, text: "Pick up squash and onions." }, 
-    { id: 4, text: "Pick up squash and onions." },
-    { id: 5, text: "Pick up squash and onions." },
-    { id: 6, text: "Pick up squash and onions." },
-    { id: 7, text: "Pick up squash and onions." },
-    { id: 8, text: "Pick up squash and onions." },
-  
-  
+  const [notes, setNotes] = useState([{ id: 1, text: "Pick up squash and onions." },
+  { id: 2, text: "Pick up squash and onions." },
+  { id: 3, text: "Pick up squash and onions." },
+  { id: 4, text: "Pick up squash and onions." },
+  { id: 5, text: "Pick up squash and onions." },
+  { id: 6, text: "Pick up squash and onions." },
+  { id: 7, text: "Pick up squash and onions." },
+  { id: 8, text: "Pick up squash and onions." },
+
+
   ])
 
   const renderedNotes = notes?.map(note => <Note note={note} />)
@@ -32,7 +32,7 @@ function App() {
       </nav>
 
 
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5">
+      <div className="d-flex flex-column align-items-center">
         {renderedNotes}
       </div>
     </>
@@ -67,8 +67,8 @@ function Note({ note }) {
 
 
 
-  return (<div className='col'>
-    <div id={`noteId-${note.id}`} className="card note">
+  return (<div className=''>
+    <div id={`noteId-${note.id}`} className="card note m-3">
       <div className="card-body">
 
         <div className='d-flex align-items-center'>
@@ -88,6 +88,7 @@ function Note({ note }) {
           </div>
         </div>
 
+        <span className='d-flex justify-content-center mt-1'>{new Date().toLocaleString()}</span>
       </div>
     </div>
 
