@@ -25,6 +25,14 @@
   border: .15em solid var(--main-color);
 }
 
+.form-control{
+  box-shadow: none !important;
+  border:1px solid #c9c9c9;
+}
+.form-control:focus{
+  border:1px solid var(--main-color);
+}
+
 .card {
   width: 25em;
 }

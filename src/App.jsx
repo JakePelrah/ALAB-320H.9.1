@@ -32,8 +32,8 @@ function App() {
       
       <h1 className='mt-5'>Create Todo List</h1>
       
-      <div className='input-group mt-5 w-50'>
-        <input class="form-control" value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} type='text' />
+      <div className='d-flex mt-5 w-50'>
+        <input class="form-control me-2" value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} type='text' />
         <button onClick={() => createTodo()} className='btn '><img src={add} /></button>
       </div>
 
