@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TODO from './components/Todo';
 import { v4 as uuidv4 } from 'uuid';
 import add from './assets/plus-lg.svg'
@@ -8,6 +8,8 @@ import './App.css'
 function App() {
   const [todos, setTodos] = useState([])
   const [newTodoText, setNewTodoText] = useState('')
+
+
 
   function deleteTodo(id) {
     setTodos(todos.filter(todo => todo.id !== id))
@@ -22,12 +24,12 @@ function App() {
     setNewTodoText('')
   }
 
-  const renderTodos = todos.map(todo => <TODO key={todo.id} id={todo.id} todoText={todo.text} deleteTodo={deleteTodo} />)
 
+  const renderTodos = todos.map(todo => <TODO key={todo.id} id={todo.id} todoText={todo.text} deleteTodo={deleteTodo} />)
 
   return (
     <div className='d-flex flex-column align-items-center'>
-      <h1>Create Todo List</h1>
+      <h1 className='mt-5'>Create Todo List</h1>
       <div className='input-group mt-5 w-50'>
         <input class="form-control" value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} type='text' />
         <button onClick={() => createTodo()} className='btn '><img src={add} /></button>
