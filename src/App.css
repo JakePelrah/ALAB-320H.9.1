@@ -1,29 +1,36 @@
 .btn {
-  background-color: purple;
+  background-color: var(--main-color);
   color: white;
   border: 1px solid #ffffff;
 }
 
-.btn:hover{
-  background-color: #560356;
+.btn:hover {
+  background-color: var(--main-color-hover);
 }
 
 .form-check-input {
   width: 1.5em;
   height: 1.5em;
   border-radius: 2em !important;
-  border: .15em solid purple;
+  border: .15em solid var(--main-color);
   box-shadow: none !important;
 }
 
-.form-check-input:focus{
-  border-color: purple;
-}
-.form-check-input:checked {
-  background-color: purple;
-  border: .15em solid purple;
+.form-check-input:focus {
+  border-color: var(--main-color);
 }
 
-.card{
-  width: 20em;
+.form-check-input:checked {
+  background-color: var(--main-color);
+  border: .15em solid var(--main-color);
+}
+
+.card {
+  width: 25em;
+}
+
+.date {
+  font-weight: bold;
+  color: #878787;
+
 }

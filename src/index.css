@@ -1,3 +1,9 @@
+:root{
+    --main-color:#d67c55;
+    --main-color-hover:#93553a;
+
+}
+
 body{
     background-color: #ffffff;
     color: rgb(0, 0, 0);
