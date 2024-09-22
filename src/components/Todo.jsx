@@ -3,15 +3,14 @@ import trash from '../assets/trash3-fill.svg'
 import pen from '../assets/pen-fill.svg'
 import save from '../assets/floppy-fill.svg'
 
-export default function TODO({ id, todoText, deleteTodo }) {
+export default function TODO({ id, todoText, created, deleteTodo }) {
     const [isEditing, setIsEditing] = useState(false)
     const [text, setText] = useState(todoText)
     const [isChecked, setIsChecked] = useState(false)
 
     return (
-        <div className="card">
+        <div className="card shadow-sm">
             <div className='card-header'>
-
 
                 {isEditing
                     ? <div className='d-flex justify-content-between'> <input value={text} onChange={(e) => setText(e.target.value)} type='text' />
@@ -27,12 +26,13 @@ export default function TODO({ id, todoText, deleteTodo }) {
                             <img src={save} />
                         </button>
                     </div>
-                    : <div className='d-flex justify-content-between'>
+                    : <div className='d-flex justify-content-between align-items-center'>
                         <div className="btn-group me-2" role="group" aria-label="Basic example">
                             <button onClick={() => setIsEditing(!isEditing)} className='btn'><img src={pen} /></button>
 
                             {isChecked ? <button onClick={() => deleteTodo(id)} className='btn'><img src={trash} /></button> : null}
                         </div>
+                        <div className='date'>{created}</div>
                         <input className="form-check-input" value={isChecked} onChange={(e) => setIsChecked(e.target.checked)} type="checkbox" id="flexCheckDefault" />
                     </div>}
 

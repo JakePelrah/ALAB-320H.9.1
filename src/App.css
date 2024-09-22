@@ -1,20 +1,27 @@
 .btn {
   background-color: purple;
   color: white;
+  border: 1px solid #ffffff;
 }
 
 .btn:hover{
-  background-color: rgb(86, 3, 86);
+  background-color: #560356;
 }
 
 .form-check-input {
   width: 1.5em;
   height: 1.5em;
   border-radius: 2em !important;
+  border: .15em solid purple;
+  box-shadow: none !important;
 }
 
+.form-check-input:focus{
+  border-color: purple;
+}
 .form-check-input:checked {
   background-color: purple;
+  border: .15em solid purple;
 }
 
 .card{
