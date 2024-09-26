@@ -22,6 +22,7 @@ export default function TODO({ id, todoText, created, dispatch }) {
 
                             setIsEditing(false)
                             setIsChecked(false)
+                            dispatch({type:"edit", text, id})
                         }} className='btn ms-2'>
                             <img src={save} />
                         </button>

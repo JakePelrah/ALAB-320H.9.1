@@ -11,15 +11,21 @@ function App() {
 
   function reducer(todos, action) {
 
+    console.log(todos, action)
+    if(action.type ==='edit'){
+      return todos.map(todo=> (todo.id===action.id ? {...todo, text:action.text} :todo))
+    }
+
     if (action.type === 'delete') {
       return todos.filter(todo => todo.id !== action.id)
     }
+
     if (action.type === 'create') {
+      setNewTodoText('')
       if (action.newTodoText === '') {
-        return
+        return todos
       }
 
-      setNewTodoText('')
       return [...todos,
       {
         id: uuidv4(), text: action.newTodoText, created: new Date().toLocaleString()
@@ -28,7 +34,7 @@ function App() {
   }
 
 
-  const renderTodos = todos.map(todo => <TODO key={todo.id} id={todo.id} todoText={todo.text} dispatch={dispatch} created={todo.created} />)
+  const renderTodos = todos?.map(todo => <TODO key={todo.id} id={todo.id} todoText={todo.text} dispatch={dispatch} created={todo.created} />)
 
   return (
     <div className='d-flex flex-column align-items-center'>
@@ -36,7 +42,7 @@ function App() {
       <h1 className='mt-5'>Create Todo List</h1>
 
       <div className='d-flex mt-5 w-50'>
-        <input class="form-control me-2" value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} type='text' />
+        <input className="form-control me-2" value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} type='text' />
         <button onClick={() => dispatch({ type: "create", newTodoText: newTodoText })} className='btn '><img src={add} /></button>
       </div>
 
