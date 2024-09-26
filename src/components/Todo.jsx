@@ -3,7 +3,7 @@ import trash from '../assets/trash3-fill.svg'
 import pen from '../assets/pen-fill.svg'
 import save from '../assets/floppy-fill.svg'
 
-export default function TODO({ id, todoText, created, deleteTodo }) {
+export default function TODO({ id, todoText, created, dispatch }) {
     const [isEditing, setIsEditing] = useState(false)
     const [text, setText] = useState(todoText)
     const [isChecked, setIsChecked] = useState(false)
@@ -30,7 +30,7 @@ export default function TODO({ id, todoText, created, deleteTodo }) {
                         <div className="btn-group me-2" role="group" aria-label="Basic example">
                             <button onClick={() => setIsEditing(!isEditing)} className='btn'><img src={pen} /></button>
 
-                            {isChecked ? <button onClick={() => deleteTodo(id)} className='btn'><img src={trash} /></button> : null}
+                            {isChecked ? <button onClick={() => dispatch({type:"delete", id})} className='btn'><img src={trash} /></button> : null}
                         </div>
                         <div className='date'>{created}</div>
                         <input className="form-check-input" value={isChecked} onChange={(e) => setIsChecked(e.target.checked)} type="checkbox" id="flexCheckDefault" />
