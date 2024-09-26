@@ -1,40 +1,23 @@
-import { useReducer, useState } from 'react'
+import { useState } from 'react'
+import { useTodo } from './NoteProvider';
 import TODO from './components/Todo';
-import { v4 as uuidv4 } from 'uuid';
 import add from './assets/plus-lg.svg'
 import './App.css'
 
 
 function App() {
   const [newTodoText, setNewTodoText] = useState('')
-  const [todos, dispatch] = useReducer(reducer, []);
+  const{todos, dispatch} = useTodo()
 
-  function reducer(todos, action) {
+  const renderTodos = todos?.map(todo => <TODO key={todo.id} id={todo.id} 
+    todoText={todo.text} 
+    dispatch={dispatch} created={todo.created} />)
 
-    console.log(todos, action)
-    if(action.type ==='edit'){
-      return todos.map(todo=> (todo.id===action.id ? {...todo, text:action.text} :todo))
-    }
 
-    if (action.type === 'delete') {
-      return todos.filter(todo => todo.id !== action.id)
-    }
-
-    if (action.type === 'create') {
-      setNewTodoText('')
-      if (action.newTodoText === '') {
-        return todos
-      }
-
-      return [...todos,
-      {
-        id: uuidv4(), text: action.newTodoText, created: new Date().toLocaleString()
-      }]
-    }
+  function createTodo(){
+    dispatch({ type: "create", newTodoText: newTodoText })
+    setNewTodoText('')
   }
-
-
-  const renderTodos = todos?.map(todo => <TODO key={todo.id} id={todo.id} todoText={todo.text} dispatch={dispatch} created={todo.created} />)
 
   return (
     <div className='d-flex flex-column align-items-center'>
@@ -43,7 +26,7 @@ function App() {
 
       <div className='d-flex mt-5 w-50'>
         <input className="form-control me-2" value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} type='text' />
-        <button onClick={() => dispatch({ type: "create", newTodoText: newTodoText })} className='btn '><img src={add} /></button>
+        <button onClick={() =>createTodo()} className='btn '><img src={add} /></button>
       </div>
 
       <div className='d-flex flex-column gap-3 mt-5'>
