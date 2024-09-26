@@ -7,39 +7,39 @@ export const useTodo = () => useContext(TodoContext)
 
 export default function TodoProvider({ children }) {
     const [todos, dispatch] = useReducer(reducer, [...JSON.parse(localStorage.getItem('todos'))]);
-    
+
     function reducer(todos, action) {
 
-        if(action.type ==='edit'){
-          return todos.map(todo=> (todo.id===action.id ? {...todo, text:action.text} :todo))
+        if (action.type === 'edit') {
+            return todos.map(todo => (todo.id === action.id
+                ? { ...todo, text: action.text }
+                : todo))
         }
-    
+
         if (action.type === 'delete') {
-          return todos.filter(todo => todo.id !== action.id)
+            return todos.filter(todo => todo.id !== action.id)
         }
-    
+
         if (action.type === 'create') {
-          if (action.newTodoText === '') {
-            return todos
-          }
-    
-          return [...todos,
-          {
-            id: uuidv4(), text: action.newTodoText, created: new Date().toLocaleString()
-          }]
+            if (action.newTodoText === '') {
+                return todos
+            }
+
+            return [
+            {
+                id: uuidv4(), text: action.newTodoText, created: new Date().toLocaleString()
+            }, ...todos]
         }
-      }
+    }
 
-
-      useEffect(()=>{
-        //store in localstorage
+    useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
-      },[todos])
+    }, [todos])
 
 
     return (
         <TodoContext.Provider value={{
-           todos, dispatch
+            todos, dispatch
         }}>
             {children}
         </TodoContext.Provider>

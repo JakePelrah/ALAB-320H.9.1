@@ -1,10 +1,10 @@
 :root{
-    --main-color:#5580d6;
-    --main-color-hover:#8ba3d2;
-
+    --main-color:#d65555;
+    --main-color-hover:#d17d7d;
+    --note-color:#555;
 }
 
 body{
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    background-color: var(--note-color);
+    color: rgb(255, 255, 255);
 }
